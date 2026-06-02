@@ -124,7 +124,7 @@ export default function Index() {
             tone="success"
             onClick={() => submit({ intent: "upgrade" })}
           >
-            Actualizar a Pro — $29/mes
+            Actualizar a Pro — $19/mes
           </s-button>
         )}
       </s-section>

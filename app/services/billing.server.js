@@ -64,7 +64,7 @@ export async function createSubscriptionCharge(admin, shop, returnUrl) {
           {
             plan: {
               appRecurringPricingDetails: {
-                price: { amount: 29.0, currencyCode: "USD" },
+                price: { amount: 19.0, currencyCode: "USD" },
                 interval: "EVERY_30_DAYS",
               },
             },

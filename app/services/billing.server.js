@@ -59,7 +59,7 @@ export async function createSubscriptionCharge(admin, shop, returnUrl) {
       variables: {
         name: "SEO Descriptions AI — Pro Plan",
         returnUrl,
-        test: true,
+        test: process.env.NODE_ENV !== "production",
         lineItems: [
           {
             plan: {

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:800px; overflow:hidden; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#f6f6f7; display:flex; }
+  .sidebar { width:240px; background:#1a1a2e; height:800px; padding:20px 0; flex-shrink:0; }
+  .sidebar .logo { padding:16px 24px 24px; color:white; font-size:18px; font-weight:700; border-bottom:1px solid rgba(255,255,255,0.1); }
+  .sidebar .logo span { color:#00d4aa; }
+  .sidebar nav a { display:flex; align-items:center; gap:10px; padding:12px 24px; color:rgba(255,255,255,0.6); font-size:14px; text-decoration:none; }
+  .sidebar nav a.active { color:white; background:rgba(255,255,255,0.08); border-right:3px solid #00d4aa; }
+  .dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.3); }
+  .active .dot { background:#00d4aa !important; }
+  .main { flex:1; overflow:auto; padding:32px; }
+  .topbar { display:flex; justify-content:space-between; align-items:center; margin-bottom:28px; }
+  .topbar h1 { font-size:26px; font-weight:800; color:#1a1a2e; }
+  .layout { display:grid; grid-template-columns:1fr 280px; gap:24px; }
+  .card { background:white; border-radius:12px; padding:24px; box-shadow:0 1px 8px rgba(0,0,0,0.06); margin-bottom:20px; }
+  .card h2 { font-size:16px; font-weight:700; color:#1a1a2e; margin-bottom:16px; display:flex; align-items:center; gap:8px; }
+  .count { background:#f0f0f0; color:#666; border-radius:10px; padding:2px 8px; font-size:13px; }
+  .desc-card { border:1.5px solid #e8f5f2; border-radius:10px; padding:20px; margin-bottom:14px; }
+  .desc-card .prod-name { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:10px; }
+  .desc-card .desc-text { font-size:14px; color:#555; line-height:1.7; margin-bottom:16px; background:#fafafa; padding:14px; border-radius:8px; border:1px solid #f0f0f0; }
+  .actions { display:flex; gap:10px; }
+  .btn { padding:8px 18px; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; border:none; }
+  .btn-success { background:#00d4aa; color:#1a1a2e; }
+  .btn-regen { background:#f0f0f0; color:#1a1a2e; }
+  .btn-reject { background:white; color:#e74c3c; border:1.5px solid #fde8e8; }
+  .side-card { background:white; border-radius:12px; padding:24px; box-shadow:0 1px 8px rgba(0,0,0,0.06); }
+  .side-card h3 { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:16px; }
+  .plan-badge { background:#e8f5f2; color:#00b894; padding:4px 12px; border-radius:12px; font-size:12px; font-weight:700; display:inline-block; margin-bottom:12px; }
+  .usage-text { font-size:13px; color:#666; }
+  .apply-btn { width:100%; background:#00d4aa; color:#1a1a2e; border:none; padding:12px; border-radius:8px; font-size:14px; font-weight:700; cursor:pointer; margin-top:14px; }
+</style>
+</head>
+<body>
+<div class="sidebar">
+  <div class="logo">SEO <span>AI</span></div>
+  <nav>
+    <a href="#" class="active"><span class="dot"></span> Dashboard</a>
+    <a href="#"><span class="dot"></span> Settings</a>
+    <a href="#"><span class="dot"></span> Billing</a>
+  </nav>
+</div>
+<div class="main">
+  <div class="topbar">
+    <h1>Generadas — pendientes de revisión</h1>
+  </div>
+  <div class="layout">
+    <div>
+      <div class="card">
+        <h2>Descripciones generadas <span class="count">2</span></h2>
+        <div class="desc-card">
+          <div class="prod-name">The Inventory Not Tracked Snowboard</div>
+          <div class="desc-text">Experience ultimate winter freedom with this premium snowboard designed for riders who demand performance without compromise. Perfect for both beginners and seasoned enthusiasts, this versatile winter accessory delivers responsive control on any terrain. The advanced construction provides superior edge hold and stability, while the lightweight design reduces fatigue during long days on the mountain.</div>
+          <div class="actions">
+            <button class="btn btn-success">✓ Aprobar</button>
+            <button class="btn btn-regen">↺ Regenerar</button>
+            <button class="btn btn-reject">✕ Rechazar</button>
+          </div>
+        </div>
+        <div class="desc-card">
+          <div class="prod-name">The Minimal Snowboard</div>
+          <div class="desc-text">Discover the perfect blend of style and function with The Minimal Snowboard. Crafted for riders who appreciate clean design and reliable performance, this board delivers exceptional control on groomed runs and powder alike. Its responsive flex pattern adapts to your riding style, making every descent smooth and effortless. Ideal for intermediate to advanced riders seeking a board that performs as good as it looks.</div>
+          <div class="actions">
+            <button class="btn btn-success">✓ Aprobar</button>
+            <button class="btn btn-regen">↺ Regenerar</button>
+            <button class="btn btn-reject">✕ Rechazar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="side-card">
+        <h3>Tu plan</h3>
+        <div class="plan-badge">Gratis</div>
+        <div class="usage-text" style="margin-bottom:8px;">Uso este mes: 3 / 10</div>
+        <button class="apply-btn">⚡ Aplicar todas a la tienda</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

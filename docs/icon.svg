@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#0f3460"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d4aa"/>
+      <stop offset="100%" style="stop-color:#00b894"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="1200" rx="240" fill="url(#bg)"/>
+
+  <!-- Document shape -->
+  <rect x="320" y="260" width="460" height="580" rx="32" fill="white" opacity="0.08"/>
+  <rect x="320" y="260" width="460" height="580" rx="32" fill="none" stroke="white" stroke-width="3" opacity="0.2"/>
+
+  <!-- Text lines on document -->
+  <rect x="370" y="340" width="200" height="22" rx="11" fill="white" opacity="0.5"/>
+  <rect x="370" y="392" width="360" height="16" rx="8" fill="white" opacity="0.25"/>
+  <rect x="370" y="424" width="320" height="16" rx="8" fill="white" opacity="0.25"/>
+  <rect x="370" y="456" width="340" height="16" rx="8" fill="white" opacity="0.25"/>
+
+  <rect x="370" y="512" width="200" height="22" rx="11" fill="white" opacity="0.5"/>
+  <rect x="370" y="554" width="360" height="16" rx="8" fill="white" opacity="0.25"/>
+  <rect x="370" y="586" width="280" height="16" rx="8" fill="white" opacity="0.25"/>
+
+  <!-- AI spark circle -->
+  <circle cx="820" cy="480" r="160" fill="url(#accent)" opacity="0.15"/>
+  <circle cx="820" cy="480" r="130" fill="url(#accent)"/>
+
+  <!-- Spark / AI icon -->
+  <path d="M820 380 L840 460 L920 480 L840 500 L820 580 L800 500 L720 480 L800 460 Z" fill="white"/>
+
+  <!-- SEO text -->
+  <text x="600" y="940" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="96" font-weight="800" fill="white" text-anchor="middle" opacity="0.9">SEO AI</text>
+
+  <!-- Green underline -->
+  <rect x="380" y="965" width="440" height="8" rx="4" fill="url(#accent)"/>
+</svg>

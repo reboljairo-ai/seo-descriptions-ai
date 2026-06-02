@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1600px; height:900px; overflow:hidden; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:linear-gradient(135deg,#1a1a2e 0%,#16213e 55%,#0f3460 100%); display:flex; align-items:center; justify-content:center; }
+  .container { display:flex; align-items:center; justify-content:space-between; width:1400px; gap:60px; }
+  .left { flex:1; }
+  .badge { background:rgba(0,212,170,0.15); border:1px solid rgba(0,212,170,0.4); border-radius:20px; padding:8px 20px; font-size:15px; color:#00d4aa; display:inline-block; margin-bottom:28px; }
+  h1 { font-size:72px; font-weight:800; color:white; line-height:1.1; margin-bottom:24px; }
+  h1 span { color:#00d4aa; }
+  p { font-size:22px; color:rgba(255,255,255,0.75); line-height:1.6; max-width:560px; margin-bottom:36px; }
+  .features { display:flex; flex-direction:column; gap:14px; }
+  .feature { display:flex; align-items:center; gap:12px; color:rgba(255,255,255,0.85); font-size:18px; }
+  .check { width:28px; height:28px; background:#00d4aa; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#1a1a2e; font-weight:700; font-size:14px; }
+  .right { flex:0 0 620px; }
+  .mockup { background:white; border-radius:16px; padding:28px; box-shadow:0 30px 80px rgba(0,0,0,0.4); }
+  .mockup-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+  .mockup-title { font-size:18px; font-weight:700; color:#1a1a2e; }
+  .badge-pro { background:#e8f5f2; color:#00b894; padding:4px 12px; border-radius:10px; font-size:12px; font-weight:700; }
+  .product-card { border:1.5px solid #e8f5f2; border-radius:10px; padding:18px; margin-bottom:12px; }
+  .prod-name { font-size:14px; font-weight:700; color:#1a1a2e; margin-bottom:8px; }
+  .prod-desc { font-size:13px; color:#555; line-height:1.6; background:#fafafa; padding:12px; border-radius:8px; margin-bottom:12px; }
+  .actions { display:flex; gap:8px; }
+  .btn { padding:7px 16px; border-radius:7px; font-size:12px; font-weight:600; border:none; cursor:pointer; }
+  .btn-g { background:#00d4aa; color:#1a1a2e; }
+  .btn-r { background:#f0f0f0; color:#1a1a2e; }
+  .apply-bar { background:#1a1a2e; border-radius:10px; padding:14px 20px; display:flex; justify-content:space-between; align-items:center; margin-top:16px; }
+  .apply-text { color:white; font-size:13px; font-weight:600; }
+  .apply-btn { background:#00d4aa; color:#1a1a2e; border:none; padding:8px 20px; border-radius:7px; font-size:13px; font-weight:700; cursor:pointer; }
+</style>
+</head>
+<body>
+<div style="position:fixed;top:16px;right:16px;z-index:9999;">
+  <button onclick="dl()" style="background:#00d4aa;color:#1a1a2e;border:none;padding:10px 22px;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.3);">⬇ Descargar 1600×900</button>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+function dl() {
+  const btn = document.querySelector('div[style*="fixed"]');
+  btn.style.display='none';
+  html2canvas(document.body,{width:1600,height:900,scale:1}).then(c=>{
+    const a=document.createElement('a');
+    a.download='hero-1600x900.png';
+    a.href=c.toDataURL('image/png');
+    a.click();
+    btn.style.display='block';
+  });
+}
+</script>
+<div class="container">
+  <div class="left">
+    <div class="badge">Shopify App</div>
+    <h1>SEO Descriptions<br><span>AI</span></h1>
+    <p>Auto-generate SEO-optimized product descriptions for your Shopify store. Save hours of manual work.</p>
+    <div class="features">
+      <div class="feature"><div class="check">✓</div> Auto-detect products with missing descriptions</div>
+      <div class="feature"><div class="check">✓</div> AI-generated, keyword-rich SEO copy</div>
+      <div class="feature"><div class="check">✓</div> Review, approve and bulk apply in one click</div>
+      <div class="feature"><div class="check">✓</div> Free plan — 10 products/month</div>
+    </div>
+  </div>
+  <div class="right">
+    <div class="mockup">
+      <div class="mockup-header">
+        <div class="mockup-title">SEO Descriptions AI</div>
+        <div class="badge-pro">Free Plan · 3/10 used</div>
+      </div>
+      <div class="product-card">
+        <div class="prod-name">The Minimal Snowboard</div>
+        <div class="prod-desc">Discover the perfect blend of style and performance with The Minimal Snowboard. Crafted for riders who appreciate clean design and reliable edge control on any terrain.</div>
+        <div class="actions">
+          <button class="btn btn-g">✓ Approve</button>
+          <button class="btn btn-r">↺ Regenerate</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="prod-name">Premium Winter Jacket</div>
+        <div class="prod-desc">Stay warm and stylish with this premium winter jacket. Engineered with advanced insulation technology for maximum comfort during the coldest days on the mountain.</div>
+        <div class="actions">
+          <button class="btn btn-g">✓ Approve</button>
+          <button class="btn btn-r">↺ Regenerate</button>
+        </div>
+      </div>
+      <div class="apply-bar">
+        <div class="apply-text">2 descriptions approved</div>
+        <button class="apply-btn">⚡ Apply all to store</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

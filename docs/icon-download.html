@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="UTF-8"/><title>App Icon</title>
-<style>body{margin:0;background:#222;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;gap:20px;}</style>
+<style>body{margin:0;background:#222;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;gap:20px;font-family:sans-serif;color:white;}</style>
 </head>
 <body>
 <img src="icon.svg" width="300" height="300" style="border-radius:60px;" id="icon"/>
-<a id="dl512" download="seo-ai-icon-512.png" style="background:#00d4aa;color:#1a1a2e;padding:12px 28px;border-radius:8px;font-family:sans-serif;font-weight:700;font-size:15px;text-decoration:none;cursor:pointer;">⬇ Descargar ícono PNG (512x512)</a>
-<a id="dl1200" download="seo-ai-icon-1200.png" style="background:#0f3460;color:white;padding:12px 28px;border-radius:8px;font-family:sans-serif;font-weight:700;font-size:15px;text-decoration:none;cursor:pointer;">⬇ Descargar ícono PNG (1200x1200)</a>
+<a id="dl" download="seo-ai-icon-1200.jpg" style="background:#00d4aa;color:#1a1a2e;padding:12px 28px;border-radius:8px;font-weight:700;font-size:15px;text-decoration:none;cursor:pointer;">⬇ Descargar ícono JPG 1200x1200 (para Shopify)</a>
+<p id="size" style="font-size:13px;opacity:0.6;">Calculando tamaño...</p>
 <script>
 window.onload = function() {
   const img = new Image();
   img.onload = function() {
-    const c512 = document.createElement('canvas');
-    c512.width = 512; c512.height = 512;
-    c512.getContext('2d').drawImage(img, 0, 0, 512, 512);
-    document.getElementById('dl512').href = c512.toDataURL('image/png');
-
-    const c1200 = document.createElement('canvas');
-    c1200.width = 1200; c1200.height = 1200;
-    c1200.getContext('2d').drawImage(img, 0, 0, 1200, 1200);
-    document.getElementById('dl1200').href = c1200.toDataURL('image/png');
+    const canvas = document.createElement('canvas');
+    canvas.width = 1200; canvas.height = 1200;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, 1200, 1200);
+    ctx.drawImage(img, 0, 0, 1200, 1200);
+    const dataUrl = canvas.toDataURL('image/jpeg', 0.92);
+    document.getElementById('dl').href = dataUrl;
+    const bytes = Math.round((dataUrl.length * 3) / 4 / 1024);
+    document.getElementById('size').textContent = 'Tamaño aprox: ' + bytes + ' KB';
   };
   img.src = 'icon.svg';
 };

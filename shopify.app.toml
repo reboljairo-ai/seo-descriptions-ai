@@ -1,7 +1,7 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "3caf4426337b99b65b9316d810d39f5d"
-application_url = "https://example.com"
+application_url = "https://seo-descriptions-ai-production.up.railway.app"
 embedded = true
 name = "seo-descriptions-ai"
 
@@ -45,7 +45,7 @@ api_version = "2026-07"
   topics = [ "app/scopes_update" ]
 
 [auth]
-redirect_urls = [ "https://example.com/api/auth" ]
+redirect_urls = [ "https://seo-descriptions-ai-production.up.railway.app/auth/callback" ]
 
 [build]
 include_config_on_deploy = true

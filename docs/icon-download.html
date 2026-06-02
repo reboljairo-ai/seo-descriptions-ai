@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"/><title>App Icon</title>
+<style>body{margin:0;background:#222;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;gap:20px;}</style>
+</head>
+<body>
+<img src="icon.svg" width="300" height="300" style="border-radius:60px;" id="icon"/>
+<a id="dl" download="seo-ai-icon.png" style="background:#00d4aa;color:#1a1a2e;padding:12px 28px;border-radius:8px;font-family:sans-serif;font-weight:700;font-size:15px;text-decoration:none;cursor:pointer;">⬇ Descargar ícono PNG (1200x1200)</a>
+<script>
+window.onload = function() {
+  const img = new Image();
+  img.onload = function() {
+    const canvas = document.createElement('canvas');
+    canvas.width = 1200; canvas.height = 1200;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0, 1200, 1200);
+    document.getElementById('dl').href = canvas.toDataURL('image/png');
+  };
+  img.src = 'icon.svg';
+};
+</script>
+</body>
+</html>

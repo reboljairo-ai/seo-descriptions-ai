@@ -48,6 +48,25 @@
 </style>
 </head>
 <body>
+<div style="position:fixed;top:12px;right:12px;z-index:9999;">
+  <button onclick="downloadScreenshot()" style="background:#00d4aa;color:#1a1a2e;border:none;padding:10px 20px;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+    ⬇ Descargar screenshot
+  </button>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+function downloadScreenshot() {
+  const btn = document.querySelector('div[style*="fixed"]');
+  btn.style.display = 'none';
+  html2canvas(document.body, { width:1280, height:800, scale:1 }).then(canvas => {
+    const a = document.createElement('a');
+    a.download = 'screenshot-1-dashboard.png';
+    a.href = canvas.toDataURL('image/png');
+    a.click();
+    btn.style.display = 'block';
+  });
+}
+</script>
 <div class="sidebar">
   <div class="logo">SEO <span>AI</span></div>
   <nav>

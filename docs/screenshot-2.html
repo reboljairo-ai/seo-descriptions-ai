@@ -4,8 +4,8 @@
 <meta charset="UTF-8"/>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { width:1280px; height:800px; overflow:hidden; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#f6f6f7; display:flex; }
-  .sidebar { width:240px; background:#1a1a2e; height:800px; padding:20px 0; flex-shrink:0; }
+  body { width:1600px; height:900px; overflow:hidden; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#f6f6f7; display:flex; }
+  .sidebar { width:240px; background:#1a1a2e; height:900px; padding:20px 0; flex-shrink:0; }
   .sidebar .logo { padding:16px 24px 24px; color:white; font-size:18px; font-weight:700; border-bottom:1px solid rgba(255,255,255,0.1); }
   .sidebar .logo span { color:#00d4aa; }
   .sidebar nav a { display:flex; align-items:center; gap:10px; padding:12px 24px; color:rgba(255,255,255,0.6); font-size:14px; text-decoration:none; }
@@ -45,7 +45,7 @@
 function downloadScreenshot() {
   const btn = document.querySelector('div[style*="fixed"]');
   btn.style.display = 'none';
-  html2canvas(document.body, { width:1280, height:800, scale:1 }).then(canvas => {
+  html2canvas(document.body, { width:1600, height:900, scale:1 }).then(canvas => {
     const a = document.createElement('a');
     a.download = 'screenshot-2-review.png';
     a.href = canvas.toDataURL('image/png');

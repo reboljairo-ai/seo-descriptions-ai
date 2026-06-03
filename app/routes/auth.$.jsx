@@ -1,8 +1,16 @@
 import { boundary } from "@shopify/shopify-app-react-router/server";
-import { authenticate } from "../shopify.server";
+import { authenticate, registerWebhooks } from "../shopify.server";
 
 export const loader = async ({ request }) => {
-  await authenticate.admin(request);
+  const { session } = await authenticate.admin(request);
+
+  if (session) {
+    try {
+      await registerWebhooks({ session });
+    } catch (e) {
+      console.error("Webhook registration error:", e.message);
+    }
+  }
 
   return null;
 };

@@ -33,10 +33,14 @@ export const action = async ({ request }) => {
   const intent = formData.get("intent");
 
   if (intent === "upgrade") {
-    const url = new URL(request.url);
-    const returnUrl = `${url.protocol}//${url.host}/app/billing/callback`;
-    const confirmationUrl = await createSubscriptionCharge(admin, shop, returnUrl);
-    return redirect(confirmationUrl);
+    try {
+      const url = new URL(request.url);
+      const returnUrl = `${url.protocol}//${url.host}/app/billing/callback`;
+      const confirmationUrl = await createSubscriptionCharge(admin, shop, returnUrl);
+      return redirect(confirmationUrl);
+    } catch (err) {
+      return { error: `Error al crear la suscripción: ${err.message}` };
+    }
   }
 
   if (intent === "generate") {

@@ -41,6 +41,13 @@ export async function canGenerateMore(shop) {
 }
 
 export async function createSubscriptionCharge(admin, shop, returnUrl) {
+  // Development/partner stores require test subscriptions; detect before calling billing
+  const shopQuery = await admin.graphql(`
+    query { shop { plan { partnerDevelopment } } }
+  `);
+  const shopData = await shopQuery.json();
+  const isTest = shopData.data?.shop?.plan?.partnerDevelopment ?? false;
+
   const response = await admin.graphql(
     `#graphql
     mutation createSubscription($name: String!, $lineItems: [AppSubscriptionLineItemInput!]!, $returnUrl: URL!, $test: Boolean) {
@@ -57,9 +64,9 @@ export async function createSubscriptionCharge(admin, shop, returnUrl) {
     }`,
     {
       variables: {
-        name: "SEO Descriptions AI — Pro Plan",
+        name: "SEOscribe — Pro Plan",
         returnUrl,
-        test: process.env.NODE_ENV !== "production",
+        test: isTest,
         lineItems: [
           {
             plan: {

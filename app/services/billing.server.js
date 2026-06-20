@@ -50,12 +50,13 @@ export async function createSubscriptionCharge(admin, shop, returnUrl) {
 
   const response = await admin.graphql(
     `#graphql
-    mutation createSubscription($name: String!, $lineItems: [AppSubscriptionLineItemInput!]!, $returnUrl: URL!, $test: Boolean) {
+    mutation createSubscription($name: String!, $lineItems: [AppSubscriptionLineItemInput!]!, $returnUrl: URL!, $test: Boolean, $trialDays: Int) {
       appSubscriptionCreate(
         name: $name
         lineItems: $lineItems
         returnUrl: $returnUrl
         test: $test
+        trialDays: $trialDays
       ) {
         appSubscription { id status }
         confirmationUrl
@@ -67,6 +68,7 @@ export async function createSubscriptionCharge(admin, shop, returnUrl) {
         name: "SEOscribe — Pro Plan",
         returnUrl,
         test: isTest,
+        trialDays: 7,
         lineItems: [
           {
             plan: {

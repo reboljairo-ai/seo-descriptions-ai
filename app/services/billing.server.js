@@ -41,12 +41,16 @@ export async function canGenerateMore(shop) {
 }
 
 export async function createSubscriptionCharge(admin, shop, returnUrl) {
-  // Development/partner stores require test subscriptions; detect before calling billing
-  const shopQuery = await admin.graphql(`
-    query { shop { plan { partnerDevelopment } } }
-  `);
-  const shopData = await shopQuery.json();
-  const isTest = shopData.data?.shop?.plan?.partnerDevelopment ?? false;
+  let isTest = false;
+  try {
+    const shopQuery = await admin.graphql(`
+      query { shop { plan { partnerDevelopment } } }
+    `);
+    const shopData = await shopQuery.json();
+    isTest = shopData.data?.shop?.plan?.partnerDevelopment ?? false;
+  } catch {
+    // Default to non-test; production stores don't need test mode
+  }
 
   const response = await admin.graphql(
     `#graphql
@@ -84,8 +88,11 @@ export async function createSubscriptionCharge(admin, shop, returnUrl) {
   );
 
   const data = await response.json();
-  const { confirmationUrl, userErrors } = data.data.appSubscriptionCreate;
-  if (userErrors.length > 0) throw new Error(userErrors[0].message);
+  const result = data.data?.appSubscriptionCreate;
+  if (!result) throw new Error(`GraphQL error: ${JSON.stringify(data.errors ?? data)}`);
+  const { confirmationUrl, userErrors } = result;
+  if (userErrors?.length > 0) throw new Error(userErrors[0].message);
+  if (!confirmationUrl) throw new Error("No se recibió URL de confirmación de Shopify");
   return confirmationUrl;
 }
 

@@ -1,4 +1,5 @@
-import { useFetcher, useLoaderData, redirect } from "react-router";
+import { useFetcher, useLoaderData } from "react-router";
+import { useEffect } from "react";
 import { boundary } from "@shopify/shopify-app-react-router/server";
 import { authenticate } from "../shopify.server.js";
 import prisma from "../db.server.js";
@@ -34,10 +35,10 @@ export const action = async ({ request }) => {
 
   if (intent === "upgrade") {
     try {
-      const url = new URL(request.url);
-      const returnUrl = `${url.protocol}//${url.host}/app/billing/callback`;
+      const appUrl = process.env.SHOPIFY_APP_URL || `${new URL(request.url).protocol}//${new URL(request.url).host}`;
+      const returnUrl = `${appUrl}/app/billing/callback`;
       const confirmationUrl = await createSubscriptionCharge(admin, shop, returnUrl);
-      return redirect(confirmationUrl);
+      return { confirmationUrl };
     } catch (err) {
       return { error: `Error al crear la suscripción: ${err.message}` };
     }
@@ -109,6 +110,12 @@ export default function Index() {
   const isLoading = fetcher.state !== "idle";
 
   const submit = (data) => fetcher.submit(data, { method: "POST" });
+
+  useEffect(() => {
+    if (fetcher.data?.confirmationUrl) {
+      window.open(fetcher.data.confirmationUrl, "_top");
+    }
+  }, [fetcher.data]);
 
   return (
     <s-page heading="SEO Descriptions AI">

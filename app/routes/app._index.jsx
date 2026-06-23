@@ -36,7 +36,7 @@ export const action = async ({ request }) => {
   if (intent === "upgrade") {
     try {
       const appUrl = process.env.SHOPIFY_APP_URL || `${new URL(request.url).protocol}//${new URL(request.url).host}`;
-      const returnUrl = `${appUrl}/app/billing/callback`;
+      const returnUrl = `${appUrl}/app/billing/callback?shop=${encodeURIComponent(shop)}`;
       const confirmationUrl = await createSubscriptionCharge(admin, shop, returnUrl);
       return { confirmationUrl };
     } catch (err) {
